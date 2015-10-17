@@ -38,12 +38,14 @@ form {
   will-change: transform;
   transform translate3d(0,0,0);
   position: fixed;
-  width: 256px;
+  height: 100px;
+  width: 73.333px;
   z-index: -1;
   backface-visibility: hidden;
 }
 
-/*add will-change: transform*/
+/* add will-change: transform */
+/* add transform: translateZ(0); */
 .randomPizzaContainer {
   transform: translateZ(0);
   will-change: transform;
