@@ -524,14 +524,14 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
 // for requestAnimationFrame
-//window.addEventListener('scroll', animationReadyCheck);
+window.addEventListener('scroll', animationReadyCheck);
 
-// function animationReadyCheck() {
-//   if (!window.animating) {
-//     window.requestAnimationFrame(updatePositions);
-//     window.animating = true;
-//   }
-// }
+function animationReadyCheck() {
+  if (!window.animating) {
+    window.requestAnimationFrame(updatePositions);
+    window.animating = true;
+  }
+}
 
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
@@ -546,8 +546,9 @@ function updatePositions() {
 
   // Move constants out of the for loop. Change document.querySelectorAll to documents.
   // getElementsByClassName for efficiency
-// credit https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js
-  var items = document.getElementsByClassName('mover');
+// credit https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js\
+// move this line to document.addEventListener('DOMContentLoaded', function()
+//  var items = document.getElementsByClassName('mover');
   var sine = (document.body.scrollTop / 1250);
 
   //Move this calculation outside of for loop
@@ -562,10 +563,10 @@ function updatePositions() {
     var phase = constArray[i % 5];
     //items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
     //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
+    window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
   }
 
-//window.animating = false;
+window.animating = false;
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -589,12 +590,15 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     // Move to css
-    //elem.style.height = "100px";
-    //elem.style.width = "73.333px";
+    // elem.style.height = "100px";
+    // elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    //Replace "querySelector" with getElementById
+    // Replace "querySelector" with getElementById
     document.getElementById("movingPizzas1").appendChild(elem);
+    // Move this here to stop updatePositions from re-defining items on every scroll event
+    // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
+    window.items = document.getElementsByClassName('mover');
   }
   updatePositions();
 });
