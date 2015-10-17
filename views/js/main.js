@@ -450,6 +450,7 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   // Refactored to avoid Forced Synchronous Layout
+  // Borrowed from https://www.udacity.com/course/viewer#!/c-ud860-nd/l-4147498575/e-4154208580/m-4240308553
   function changePizzaSizes(size) {
     switch(size) {
       case "1":
@@ -521,6 +522,18 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
+// credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
+// for requestAnimationFrame
+//window.addEventListener('scroll', animationReadyCheck);
+
+// function animationReadyCheck() {
+//   if (!window.animating) {
+//     window.requestAnimationFrame(updatePositions);
+//     window.animating = true;
+//   }
+// }
+
+
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
@@ -528,7 +541,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // credit https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js
 // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/13
 function updatePositions() {
-  frame++;
+  window.frame++;
   window.performance.mark("mark_start_frame");
 
   // Move constants out of the for loop. Change document.querySelectorAll to documents.
@@ -537,7 +550,7 @@ function updatePositions() {
   var items = document.getElementsByClassName('mover');
   var sine = (document.body.scrollTop / 1250);
 
-  //Move calculation outside of for loop
+  //Move this calculation outside of for loop
   //Set target to 5, only 5 unique phases for each scroll
   var constArray = [];
   for (var i = 0; i < 5; i++) {
@@ -547,9 +560,12 @@ function updatePositions() {
 //Reposition pizzas, set target to 24 (constant number of pizza)
   for (i = 0; i < 24; i++) {
     var phase = constArray[i % 5];
-    //window.items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0')';
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    //items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
+    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
   }
+
+//window.animating = false;
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -572,8 +588,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
+    // Move to css
+    //elem.style.height = "100px";
+    //elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     //Replace "querySelector" with getElementById
