@@ -564,7 +564,7 @@ function updatePositions() {
     var phase = constArray[i % 5];
     //items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
     //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
+    window.items[i].style.transform = 'translateX(' + ((i % 4) * 256 + (100 * phase)) + 'px)';
   }
 
 window.animating = false;
@@ -584,7 +584,7 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
+  var cols = 4;
   var s = 256;
   for (var i = 0; i < 35; i++) {
     var elem = document.createElement('img');
