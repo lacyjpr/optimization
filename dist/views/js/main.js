@@ -559,12 +559,19 @@ function updatePositions() {
     constArray.push(Math.sin(sine + i))
   }
 
-//Reposition pizzas, set target to 35 (constant number of pizza)
-  for (i = 0; i < 35; i++) {
+//Reposition pizzas, set target to 36 (constant number of pizzas)
+  for (i = 0; i < 36; i++) {
     var phase = constArray[i % 5];
-    //items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
-    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    window.items[i].style.transform = 'translateX(' + ((i % 4) * 256 + (100 * phase)) + 'px)';
+    /* None of these transform statements would properly format the pizzas.
+     * They would bunch up in the middle, only cover half the screen, so I abandoned them
+     * In favor of the old statement
+     */
+    //window.items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
+    //items[i].style.transform = 'translate3d(' + ((i % 8) * 256 + (100 * phase)) + 'px, 0, 0)';
+    window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
+    //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (phase)) + 'px)';
+    //window.items[i].style.transform = 'translateX(' +  (100 * phase) + 'px)';
   }
 
 window.animating = false;
@@ -584,9 +591,9 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 4;
+  var cols = 8;
   var s = 256;
-  for (var i = 0; i < 35; i++) {
+  for (var i = 0; i < 36; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
