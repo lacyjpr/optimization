@@ -449,7 +449,7 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
-  // Refactored to avoid Forced Synchronous Layout
+  // Refactored to avoid Forced Synchronous Layout, avoid use of determineDx to determine newwidth
   // Borrowed from https://www.udacity.com/course/viewer#!/c-ud860-nd/l-4147498575/e-4154208580/m-4240308553
   function changePizzaSizes(size) {
     switch(size) {
@@ -465,6 +465,8 @@ var resizePizzas = function(size) {
       default:
         console.log("bug in sizeSwitcher");
     }
+
+// Move document.document.querySelectorAll(".randomPizzaContainer"); outside the for loop
     var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
 
     for (var i = 0; i < randomPizzas.length; i++) {
