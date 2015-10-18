@@ -7,9 +7,11 @@
   -box-sizing: border-box;
 }
 
+/*set body width to 1170*/
 body {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   background: black;
+  /*width: 1170px;*/
 }
 
 input {
