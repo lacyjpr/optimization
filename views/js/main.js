@@ -559,8 +559,8 @@ function updatePositions() {
     constArray.push(Math.sin(sine + i))
   }
 
-//Reposition pizzas, set target to 24 (constant number of pizza)
-  for (i = 0; i < 24; i++) {
+//Reposition pizzas, set target to 35 (constant number of pizza)
+  for (i = 0; i < 35; i++) {
     var phase = constArray[i % 5];
     //items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
     //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
