@@ -562,6 +562,10 @@ function updatePositions() {
 //Reposition pizzas, set target to 36 (constant number of pizzas)
   for (i = 0; i < 36; i++) {
     var phase = constArray[i % 5];
+    /* None of these transform statements would properly format the pizzas.
+     * They would bunch up in the middle, only cover half the screen, so I abandoned them
+     * In favor of the old statement
+     */
     //window.items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
     //items[i].style.transform = 'translate3d(' + ((i % 8) * 256 + (100 * phase)) + 'px, 0, 0)';
     window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
