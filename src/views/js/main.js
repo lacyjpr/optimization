@@ -449,13 +449,43 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  // Refactored to avoid Forced Synchronous Layout, avoid use of determineDx to determine newwidth
+  // Borrowed from https://www.udacity.com/course/viewer#!/c-ud860-nd/l-4147498575/e-4154208580/m-4240308553
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    switch(size) {
+      case "1":
+        newWidth = 25;
+        break;
+      case "2":
+        newWidth = 33.3;
+        break;
+      case "3":
+        newWidth = 50;
+        break;
+      default:
+        console.log("bug in sizeSwitcher");
+    }
+
+// Move document.document.querySelectorAll(".randomPizzaContainer"); outside the for loop
+    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+
+    for (var i = 0; i < randomPizzas.length; i++) {
+      randomPizzas[i].style.width = newWidth +"%";
     }
   }
+  //   var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+  //   for (var i = 0; i < randomPizzas.length; i++) {
+  //     var dx = determineDx(randomPizzas[i], size);
+  //     var newwidth = (randomPizzas[i].offsetWidth + dx) +'px';
+  //     randomPizzas[i].style.width = newwidth;
+  //   }
+  // }
+    // for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+    //   var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+    //   var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+    //   document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+  //   }
+  // }
 
   changePizzaSizes(size);
 
@@ -482,7 +512,7 @@ console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "
 
 // Iterator for number of times the pizzas in the background have scrolled.
 // Used by updatePositions() to decide when to log the average time per frame
-var frame = 0;
+window.frame++;
 
 // Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
 function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
@@ -494,19 +524,57 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
+// credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
+// for requestAnimationFrame
+window.addEventListener('scroll', animationReadyCheck);
+
+function animationReadyCheck() {
+  if (!window.animating) {
+    window.requestAnimationFrame(updatePositions);
+    window.animating = true;
+  }
+}
+
+
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+// credit https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js
+// credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/13
 function updatePositions() {
-  frame++;
+  window.frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+// Move constants out of the for loop.
+// credit https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js\
+// move this line to document.addEventListener('DOMContentLoaded', function()
+//  var items = document.getElementsByClassName('mover');
+  var sine = (document.body.scrollTop / 1250);
+
+  //Move this calculation outside of for loop
+  //Set target to 5, only 5 unique phases for each scroll
+  var constArray = [];
+  for (var i = 0; i < 5; i++) {
+    constArray.push(Math.sin(sine + i))
   }
+
+//Reposition pizzas, set target to 36 (constant number of pizzas)
+  for (i = 0; i < 36; i++) {
+    var phase = constArray[i % 5];
+    /* None of these transform statements would properly format the pizzas.
+     * They would bunch up in the middle, only cover half the screen, so I abandoned them
+     * In favor of the old statement
+     */
+    //window.items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
+    //items[i].style.transform = 'translate3d(' + ((i % 8) * 256 + (100 * phase)) + 'px, 0, 0)';
+    window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
+    //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (phase)) + 'px)';
+    //window.items[i].style.transform = 'translateX(' +  (100 * phase) + 'px)';
+  }
+
+window.animating = false;
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -525,15 +593,20 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 36; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
+    // Move to css
+    // elem.style.height = "100px";
+    // elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    // Replace "querySelector" with getElementById
+    document.getElementById("movingPizzas1").appendChild(elem);
+    // Move this here to stop updatePositions from re-defining items on every scroll event
+    // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
+    window.items = document.getElementsByClassName('mover');
   }
   updatePositions();
 });

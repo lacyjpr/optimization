@@ -29,13 +29,26 @@ form {
   font-weight: 800;
 }
 
+/* add will-change: transform */
+/* add transfor translate3d */
+/* add transform: translateZ(0) to force a new layer */
+/* backface-visibility: hidden; */
 .mover {
+  transform: translateZ(0);
+  will-change: transform;
+  transform translate3d(0,0,0);
   position: fixed;
-  width: 256px;
+  height: 100px;
+  width: 73.333px;
   z-index: -1;
+  backface-visibility: hidden;
 }
 
+/* add will-change: transform */
+/* add transform: translateZ(0); */
 .randomPizzaContainer {
+  transform: translateZ(0);
+  will-change: transform;
   float: left;
   display: flex;
 }
