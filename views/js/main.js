@@ -544,8 +544,7 @@ function updatePositions() {
   window.frame++;
   window.performance.mark("mark_start_frame");
 
-  // Move constants out of the for loop. Change document.querySelectorAll to documents.
-  // getElementsByClassName for efficiency
+// Move constants out of the for loop.
 // credit https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js\
 // move this line to document.addEventListener('DOMContentLoaded', function()
 //  var items = document.getElementsByClassName('mover');
@@ -585,7 +584,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 24; i++) {
+  for (var i = 0; i < 35; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
