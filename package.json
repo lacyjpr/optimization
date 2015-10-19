@@ -1,0 +1,22 @@
+{
+  "name": "optimization",
+  "version": "1.0.0",
+  "description": "Udacity FEND Project 4 Optimization",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lacyjpr/optimization.git"
+  },
+  "author": "JP Lacy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lacyjpr/optimization/issues"
+  },
+  "homepage": "https://github.com/lacyjpr/optimization#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}
