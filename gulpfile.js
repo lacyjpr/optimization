@@ -2,12 +2,14 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	minifyCSS = require('gulp-minify-css'),
 	imageminJpegRecompress = require('imagemin-jpeg-recompress'),
+	imageminPngcrush = require('imagemin-pngcrush'),
 	htmlmin = require('gulp-htmlmin');
 
 var paths = {
 	scripts: ['src/js/*.js'],
 	styles: ['src/css/*.css'],
-	images: ['src/img/*.jpg'],
+	jpgImages: ['src/img/*.jpg'],
+	pngImages: ['src/img/*.png'],
 	content: ['src/*.html']
 }
 
@@ -25,11 +27,18 @@ gulp.task('styles', function(){
 		.pipe(gulp.dest('dist/css/'));
 });
 
-// Compresses image files and outputs them to dist/img
-gulp.task('images', function(){
-	return gulp.src(paths.images)
+// Compresses jpg files and outputs them to dist/img
+gulp.task('jpgImages', function(){
+	return gulp.src(paths.jpgImages)
 		.pipe(imageminJpegRecompress({loops: 3})())
 		.pipe(gulp.dest('dist/img/'));
+});
+
+// Compresses png files and outputs them to dist/img
+gulp.task('pngImages', function(){
+	return gulp.src(paths.pngImages)
+		.pipe(imageminPngcrush({reduce: true})())
+		.pipe(gulp.dest('dist/img'));
 });
 
 // Minifies HTML and outputs it to dist
@@ -39,4 +48,4 @@ gulp.task('content', function(){
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['scripts', 'styles', 'images', 'content']);
+gulp.task('default', ['scripts', 'styles', 'jpgImages', 'pngImages', 'content']);
