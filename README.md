@@ -80,7 +80,9 @@ Inline css/style.css
 
 Make google-analytics script async
 
-Use Web Font Loader asynchronously to load the Google webfont
+Add a media query for print.css
+
+Use Web Font Loader to load the Google webfont asynchronously
 
 
 Sources:
