@@ -1,5 +1,11 @@
 ## Website Performance Optimization portfolio project
 
+I have optimized index.html to achieve at least a 90 PageSpeed score. I've optimized the JavaScript in pizza.html to achieve a frame rate of 60fps when scrolling. I've also reduced the time to resize pizzas in pizza.html to less than 5 ms.
+
+I have included a src directory that includes un-minified code.
+
+The dist directory includes minified code and optimized images.
+
 You can view my project here: http://lacyjpr.github.io/optimization/
 
 ####Part 1: Optimize PageSpeed Insights score for index.html
@@ -40,6 +46,7 @@ https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/13
 ####Part 3: Optimize Time to Resize Pizzas in pizza.html
 
 ##### Optimizations:
+* Made the following changes to changePizzaSizes:
 * Move document.document.querySelectorAll(".randomPizzaContainer"); outside the for loop
 * Refactor to use a switch to set pizza width in order to avoid Forced Synchronous Layout and avoid use of determineDx to determine new pizza widths
 
