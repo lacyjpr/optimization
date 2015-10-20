@@ -18,6 +18,7 @@ cameron *at* udacity *dot* com
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
+"use strict";
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -424,7 +425,8 @@ var resizePizzas = function(size) {
   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldwidth = elem.offsetWidth;
-    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
+    // Switch to document.getElementById instead of document.querySelector
+    var windowwidth = document.getElementById("randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
     // TODO: change to 3 sizes? no more xl?
@@ -468,9 +470,13 @@ var resizePizzas = function(size) {
     }
 
 // Move document.document.querySelectorAll(".randomPizzaContainer"); outside the for loop
-    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+// Switch to document.getElementsByClassName from document.querySelectorAll
+    var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
-    for (var i = 0; i < randomPizzas.length; i++) {
+// Move randomPizzas.length to a local variable so the array's length property isn't accessed on each iteration
+    var pizzaLength = randomPizzas.length
+
+    for (var i = 0; i < pizzaLength; i++) {
       randomPizzas[i].style.width = newWidth +"%";
     }
   }
@@ -487,8 +493,9 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+// Move var pizzasDiv = document.getElementById("randomPizzas"); out of the for loop so the loop only makes one DOM call
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -547,9 +554,12 @@ function updatePositions() {
     constArray.push(Math.sin(sine + i));
   }
 
+// Declare var phase outside the for loop to prevent it from being created each iteration
+  var phase;
+
 //Reposition pizzas, set target to 36 (constant number of pizzas)
   for (i = 0; i < 36; i++) {
-    var phase = constArray[i % 5];
+    phase = constArray[i % 5];
     /* None of these transform statements would properly format the pizzas.
      * They would bunch up in the middle, only cover half the screen, so I abandoned them
      * In favor of the old statement
@@ -581,8 +591,13 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  // Declare var elem outside the loop to prevent it being created each iteration
+  var elem;
+  // Declare movingPizzas outside the for loop to prevent a DOM call on each iteration
+  // Replace "querySelector" with getElementById
+  var movingPizzas = document.getElementById('movingPizzas1');
   for (var i = 0; i < 36; i++) {
-    var elem = document.createElement('img');
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "img/pizza.png";
     // Move to css
@@ -590,8 +605,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    // Replace "querySelector" with getElementById
-    document.getElementById("movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
     // Move this here to stop updatePositions from re-defining items on every scroll event
     // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
     window.items = document.getElementsByClassName('mover');
