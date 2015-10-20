@@ -7,9 +7,9 @@ To view the optimized page, navigate to dist, then double-click index.html.
 
 I have optimized index.html to achieve at least a 90 PageSpeed score. I've optimized the JavaScript in pizza.html to achieve a frame rate of 60fps when scrolling. I've also reduced the time to resize pizzas in pizza.html to less than 5 ms.
 
-I have included a src directory that includes un-minified code.
+Un-minified source code is in the src directory.
 
-The dist directory includes minified code and optimized images.
+Production code (minified, images optimized, etc) is in the dist directory.
 
 
 
