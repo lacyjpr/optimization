@@ -34,22 +34,29 @@ form {
 /* add transform: translateZ(0) to force a new layer */
 /* backface-visibility: hidden; */
 .mover {
+  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: transform;
-  transform translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
   position: fixed;
   height: 100px;
   width: 73.333px;
   z-index: -1;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
 /* add will-change: transform */
 /* add transform: translateZ(0); */
 .randomPizzaContainer {
+  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: transform;
   float: left;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
