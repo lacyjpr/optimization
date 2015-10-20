@@ -48,4 +48,13 @@ gulp.task('content', function(){
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['scripts', 'styles', 'jpgImages', 'pngImages', 'content']);
+// Watches for changes and execute appropriate tasks
+gulp.task('watch', function(){
+	gulp.watch('src/js/*.js', ['scripts']);
+	gulp.watch('src/css/*.css', ['styles']);
+	gulp.watch('src/img/*.jpg', ['jpgImages']);
+	gulp.watch('src/img/*.png', ['pngImages']);
+	gulp.watch('src/*.html', ['content']);
+});
+
+gulp.task('default', ['scripts', 'styles', 'jpgImages', 'pngImages', 'content', 'watch']);
