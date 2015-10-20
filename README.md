@@ -43,12 +43,17 @@ https://discussions.udacity.com/t/gulp-and-setting-up-a-gulp-workflow-intermedia
 * Use window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px'; instead of items...
 * Set number of pizzas to 36 in document.addEventListener('DOMContentLoaded', function()
 * Replace "querySelector" with getElementById in document.getElementById("movingPizzas1").appendChild(elem);
+* Switch to document.getElementById instead of document.querySelector in function determineDx
+* Declare var phase outside the for loop on line 561 to prevent it from being created each iteration
+* Declare var elem outside the loop on line 599 to prevent it being created each iteration
+* Declare movingPizzas outside the for loop to prevent a DOM call on each iteration
 * Change CSS for .mover: Add transform: translateZ(0); will-change: transform; transform translate3d(0,0,0); and backface-visibility: hidden;
 
 
 Sources:
 https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js
 https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/13
+https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
 
 ####Part 3: Optimize Time to Resize Pizzas in pizza.html
 
@@ -56,9 +61,15 @@ https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/13
 * Made the following changes to changePizzaSizes:
 * Move document.document.querySelectorAll(".randomPizzaContainer"); outside the for loop
 * Refactor to use a switch to set pizza width in order to avoid Forced Synchronous Layout and avoid use of determineDx to determine new pizza widths
+* Switch to document.getElementsByClassName from document.querySelectorAll in this line of changePizzaSizes
+var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
+* Move randomPizzas.length to a local variable so the array's length property isn't accessed on each iteration
+* Move var pizzasDiv = document.getElementById("randomPizzas"); out of the for loop on line 498 so the loop only makes one DOM call
 * Change CSS for .randomPizzaContainer: Add transform: translateZ(0); and will-change: transform;
 
 Source:
 https://www.udacity.com/course/viewer#!/c-ud860-nd/l-4147498575/e-4154208580/m-4240308553
+https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
+https://javascriptweblog.wordpress.com/2010/10/11/rethinking-javascript-for-loops/
 
 
