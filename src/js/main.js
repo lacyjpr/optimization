@@ -452,6 +452,7 @@ var resizePizzas = function(size) {
   // Refactored to avoid Forced Synchronous Layout, avoid use of determineDx to determine newwidth
   // Borrowed from https://www.udacity.com/course/viewer#!/c-ud860-nd/l-4147498575/e-4154208580/m-4240308553
   function changePizzaSizes(size) {
+    var newWidth;
     switch(size) {
       case "1":
         newWidth = 25;
@@ -543,7 +544,7 @@ function updatePositions() {
   //Set target to 5, only 5 unique phases for each scroll
   var constArray = [];
   for (var i = 0; i < 5; i++) {
-    constArray.push(Math.sin(sine + i))
+    constArray.push(Math.sin(sine + i));
   }
 
 //Reposition pizzas, set target to 36 (constant number of pizzas)
@@ -567,7 +568,7 @@ window.animating = false;
   // Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
-  if (frame % 10 === 0) {
+  if (window.frame % 10 === 0) {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
   }
