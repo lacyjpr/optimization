@@ -3,11 +3,14 @@ var gulp = require('gulp'),
 	minifyCSS = require('gulp-minify-css'),
 	imageminJpegRecompress = require('imagemin-jpeg-recompress'),
 	imageminPngcrush = require('imagemin-pngcrush'),
+	imagemin = require('gulp-imagemin'),
+	pngquant = require('imagemin-pngquant'),
 	htmlmin = require('gulp-htmlmin');
 
 var paths = {
 	scripts: ['src/js/*.js'],
 	styles: ['src/css/*.css'],
+	images: ['src/img/*'],
 	jpgImages: ['src/img/*.jpg'],
 	pngImages: ['src/img/*.png'],
 	content: ['src/*.html']
@@ -25,6 +28,16 @@ gulp.task('styles', function(){
 	return gulp.src(paths.styles)
 		.pipe(minifyCSS())
 		.pipe(gulp.dest('dist/css/'));
+});
+
+gulp.task('images', function(){
+	return gulp.src(paths.images)
+	.pipe(imagemin({
+		progressive: true,
+		svgoPlugins: [{removeViewBox: false}],
+		use: [pngquant()]
+	}))
+	.pipe(gulp.dest('dist/img'))
 });
 
 // Compresses jpg files and outputs them to dist/img
@@ -58,3 +71,4 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default', ['scripts', 'styles', 'jpgImages', 'pngImages', 'content', 'watch']);
+//gulp.task('default', ['scripts', 'styles', 'images', 'content', 'watch']);
