@@ -28,5 +28,6 @@
     "imagemin-pngcrush": "^4.1.0",
     "imagemin-pngquant": "^4.2.0",
     "uglify-js": "^2.5.0"
-  }
+  },
+  "dependencies": {}
 }
