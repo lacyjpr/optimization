@@ -1,2 +1,4 @@
 node_modules
 Web_Optimization_Notes.txt
+.DS_Store
+src/.DS_Store
