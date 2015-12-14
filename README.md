@@ -48,6 +48,7 @@ https://discussions.udacity.com/t/gulp-and-setting-up-a-gulp-workflow-intermedia
 * Declare var elem outside the loop on line 599 to prevent it being created each iteration
 * Declare movingPizzas outside the for loop to prevent a DOM call on each iteration
 * Change CSS for .mover: Add transform: translateZ(0); will-change: transform; transform translate3d(0,0,0); and backface-visibility: hidden;
+* Use a transform on line 572 instead of window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
 
 
 Sources:
