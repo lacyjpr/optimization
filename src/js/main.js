@@ -598,12 +598,18 @@ document.addEventListener('DOMContentLoaded', function() {
   // Declare movingPizzas outside the for loop to prevent a DOM call on each iteration
   // Replace "querySelector" with getElementById
   var movingPizzas = document.getElementById('movingPizzas1');
+  //var rowTop = 0;
   // calculate cols and rows based on browser window size
   // credit https://github.com/uncleoptimus/udacityP4/blob/gh-pages/views/js/main.js
   // cols = Math.ceil(window.innerWidth / (256 - 73.33));
   // rows = Math.ceil(window.innerHeight / 256);
   // totalPizzas = cols * rows;
   for (var i = 0; i < totalPizzas; i++) {
+    // rowTop = (Math.floor(i / cols) * s);
+
+    // if (rowTop > window.innerHeight) {
+    //   break;
+    // }
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "img/pizza.png";
