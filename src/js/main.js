@@ -521,7 +521,9 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
 // for requestAnimationFrame
-window.addEventListener('scroll', animationReadyCheck);
+// Change animationReadyCheck to updatePositions
+// credit etienne https://discussions.udacity.com/t/forced-reflow-new-issue/158305/19
+window.addEventListener('scroll', updatePositions);
 
 function animationReadyCheck() {
   if (!window.animating) {
@@ -570,6 +572,8 @@ function updatePositions() {
     //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
     //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (phase)) + 'px)';
     window.items[i].style.transform = 'translateX(' +  (100 * phase) + 'px)';
+    //var transX = items[i].basicLeft + 100 * phase + 'px';
+    //window.items[i].style.transform = 'translateX('+transX+')';
   }
 
 window.animating = false;
@@ -620,9 +624,10 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     movingPizzas.appendChild(elem);
-    // Move this here to stop updatePositions from re-defining items on every scroll event
-    // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
-    window.items = document.getElementsByClassName('mover');
   }
+  // Move this here to stop updatePositions from re-defining items on every scroll event
+  // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
+  window.items = document.getElementsByClassName('mover');
+  console.log(window.items);
   updatePositions();
 });
