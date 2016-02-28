@@ -628,6 +628,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Move this here to stop updatePositions from re-defining items on every scroll event
   // credit mcs https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/12
   window.items = document.getElementsByClassName('mover');
-  console.log(window.items);
+  //console.log(window.items);
   updatePositions();
 });
