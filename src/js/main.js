@@ -572,12 +572,13 @@ function updatePositions() {
     //window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
     //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
     //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (phase)) + 'px)';
+    // console.log(window.items[1]);
     window.items[i].style.transform = 'translateX(' +  (100 * phase) + 'px)';
     //var transX = items[i].basicLeft + 100 * phase + 'px';
     //window.items[i].style.transform = 'translateX('+transX+')';
   }
 
-window.animating = false;
+//window.animating = false;
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
