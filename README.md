@@ -36,7 +36,6 @@ Sources:
 ####Part 2: Optimize Frames per Second in pizza.html
 
 ##### Optimizations:
-* Use requestAnimationFrame for updatePositions
 * Move all constants out of the for loop in updatePositions
 * Move the Math.sin calculation out for the for loop in updatePositions
 * Move var items = document.getElementsByClassName('mover'); to the anonymous function at the bottom of the file to stop updatePositions from re-defining items on every scroll event
@@ -49,7 +48,7 @@ Sources:
 * Declare movingPizzas outside the for loop to prevent a DOM call on each iteration
 * Change CSS for .mover: Add transform: translateZ(0); will-change: transform; transform translate3d(0,0,0); and backface-visibility: hidden;
 * Use a transform on line 572 instead of window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-* Replace animationReadyCheck with updatePositions in the requestAnimationFrame code
+* Replace animationReady check with updatePositions in this event listener: window.addEventListener('scroll', updatePositions);
 
 
 Sources:
