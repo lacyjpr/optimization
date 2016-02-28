@@ -49,6 +49,7 @@ Sources:
 * Change CSS for .mover: Add transform: translateZ(0); will-change: transform; transform translate3d(0,0,0); and backface-visibility: hidden;
 * Use a transform on line 572 instead of window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
 * Replace animationReady check with updatePositions in this event listener: window.addEventListener('scroll', updatePositions);
+* Calculate number of pizzas based on window size
 
 
 Sources:
@@ -56,6 +57,7 @@ Sources:
 * https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/13
 * https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
 * https://discussions.udacity.com/t/forced-reflow-new-issue/158305/21
+* https://github.com/uncleoptimus/udacityP4/blob/gh-pages/views/js/main.js
 
 ####Part 3: Optimize Time to Resize Pizzas in pizza.html
 
