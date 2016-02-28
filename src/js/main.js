@@ -567,15 +567,15 @@ function updatePositions() {
      * They would bunch up in the middle, only cover half the screen, so I abandoned them
      * In favor of the old statement
      */
-    //window.items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
-    //items[i].style.transform = 'translate3d(' + ((i % 8) * 256 + (100 * phase)) + 'px, 0, 0)';
-    //window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
-    //window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (phase)) + 'px)';
-    console.log(window.items[1]);
+    // window.items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
+    // items[i].style.transform = 'translate3d(' + ((i % 8) * 256 + (100 * phase)) + 'px, 0, 0)';
+    // window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    // window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (100 * phase)) + 'px)';
+    // window.items[i].style.transform = 'translateX(' + ((i % 8) * 256 + (phase)) + 'px)';
+    // console.log(window.items[1]);
     window.items[i].style.transform = 'translateX(' +  (100 * phase) + 'px)';
-    //var transX = items[i].basicLeft + 100 * phase + 'px';
-    //window.items[i].style.transform = 'translateX('+transX+')';
+    // var transX = items[i].basicLeft + 100 * phase + 'px';
+    // window.items[i].style.transform = 'translateX('+transX+')';
   }
 
 //window.animating = false;
@@ -607,9 +607,9 @@ document.addEventListener('DOMContentLoaded', function() {
   //var rowTop = 0;
   // calculate cols and rows based on browser window size
   // credit https://github.com/uncleoptimus/udacityP4/blob/gh-pages/views/js/main.js
-  // cols = Math.ceil(window.innerWidth / (256 - 73.33));
-  // rows = Math.ceil(window.innerHeight / 256);
-  // totalPizzas = cols * rows;
+  cols = Math.ceil(window.innerWidth / (256 - 73.33));
+  rows = Math.ceil(window.innerHeight / 256);
+  totalPizzas = cols * rows;
   for (var i = 0; i < totalPizzas; i++) {
     // rowTop = (Math.floor(i / cols) * s);
 
