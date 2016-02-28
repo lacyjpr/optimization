@@ -525,12 +525,12 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // credit etienne https://discussions.udacity.com/t/forced-reflow-new-issue/158305/19
 window.addEventListener('scroll', updatePositions);
 
-function animationReadyCheck() {
-  if (!window.animating) {
-    window.requestAnimationFrame(updatePositions);
-    window.animating = true;
-  }
-}
+// function animationReadyCheck() {
+//   if (!window.animating) {
+//     window.requestAnimationFrame(updatePositions);
+//     window.animating = true;
+//   }
+// }
 
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
