@@ -28,9 +28,9 @@ Production code (minified, images optimized, etc) is in the dist directory.
 * Minify HTML
 
 Sources:
-https://discussions.udacity.com/t/how-to-optimize-css-and-google-fonts/26997
-https://github.com/typekit/webfontloader
-https://discussions.udacity.com/t/gulp-and-setting-up-a-gulp-workflow-intermediate/24359
+* https://discussions.udacity.com/t/how-to-optimize-css-and-google-fonts/26997
+* https://github.com/typekit/webfontloader
+* https://discussions.udacity.com/t/gulp-and-setting-up-a-gulp-workflow-intermediate/24359
 
 
 ####Part 2: Optimize Frames per Second in pizza.html
@@ -49,12 +49,14 @@ https://discussions.udacity.com/t/gulp-and-setting-up-a-gulp-workflow-intermedia
 * Declare movingPizzas outside the for loop to prevent a DOM call on each iteration
 * Change CSS for .mover: Add transform: translateZ(0); will-change: transform; transform translate3d(0,0,0); and backface-visibility: hidden;
 * Use a transform on line 572 instead of window.items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+* Replace animationReadyCheck with updatePositions in the requestAnimationFrame code
 
 
 Sources:
-https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js
-https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/13
-https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
+* https://github.com/Sarika-C/frontend-nanodegree-mobile-portfolio/blob/master/views/js/main.js
+* https://discussions.udacity.com/t/p4-pizza-scrolling-rasterize-paint/30713/13
+* https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
+* https://discussions.udacity.com/t/forced-reflow-new-issue/158305/21
 
 ####Part 3: Optimize Time to Resize Pizzas in pizza.html
 
@@ -68,9 +70,9 @@ var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 * Move var pizzasDiv = document.getElementById("randomPizzas"); out of the for loop on line 498 so the loop only makes one DOM call
 * Change CSS for .randomPizzaContainer: Add transform: translateZ(0); and will-change: transform;
 
-Source:
-https://www.udacity.com/course/viewer#!/c-ud860-nd/l-4147498575/e-4154208580/m-4240308553
-https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
-https://javascriptweblog.wordpress.com/2010/10/11/rethinking-javascript-for-loops/
+Sources:
+* https://www.udacity.com/course/viewer#!/c-ud860-nd/l-4147498575/e-4154208580/m-4240308553
+* https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
+* https://javascriptweblog.wordpress.com/2010/10/11/rethinking-javascript-for-loops/
 
 
