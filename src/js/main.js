@@ -560,7 +560,7 @@ function updatePositions() {
 // Declare var phase outside the for loop to prevent it from being created each iteration
   var phase;
 
-//Reposition pizzas, set target to 36 (constant number of pizzas)
+//Reposition pizzas, set target to window.items.length (number of pizzas calculated below)
   for (i = 0; i < window.items.length; i++) {
     phase = constArray[i % 5];
     /* None of these transform statements would properly format the pizzas.
